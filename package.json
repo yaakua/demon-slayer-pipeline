@@ -1,0 +1,35 @@
+{
+  "name": "demon-slayer-pipeline",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18.17.0"
+  },
+  "scripts": {
+    "prepare": "playwright install --with-deps || true",
+    "crawl:4kw": "bun --env-file=.env src/crawl_4kwallpapers.ts",
+    "fetch:pinterest": "bun --env-file=.env src/fetch_pinterest.ts",
+    "fetch:wallhaven": "bun --env-file=.env src/fetch_wallhaven.ts",
+    "fetch:steamwe": "bun --env-file=.env src/fetch_steam_we.ts",
+    "build:manifest": "bun --env-file=.env src/manifest/buildManifest.ts",
+    "pipeline:all": "npm run crawl:4kw && npm run fetch:pinterest && npm run fetch:steam:we && npm run build:manifest",
+    "lint": "eslint . --ext .ts,.tsx || true"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.632.0",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^17.2.2",
+    "image-hash": "^5.3.2",
+    "node-fetch": "^3.3.2",
+    "sharp": "^0.33.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.47.2",
+    "playwright": "^1.47.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.2",
+    "@types/node": "^22.7.4",
+    "eslint": "^9.11.1"
+  }
+}

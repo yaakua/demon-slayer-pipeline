@@ -1,0 +1,7 @@
+node_modules
+.env
+.DS_Store
+data/raw
+data/variants
+playwright-report
+test-results
