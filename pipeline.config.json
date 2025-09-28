@@ -1,0 +1,50 @@
+{
+  "outputDir": "data/pipeline",
+  "csvPath": "data/pipeline/metadata.csv",
+  "compression": {
+    "outputDir": "data/pipeline/compressed",
+    "maxWidth": 1024,
+    "quality": 80
+  },
+  "ai": {
+    "enabled": true,
+    "classifierModel": "Xenova/vit-base-patch16-224",
+    "captionModel": "Xenova/blip-image-captioning-base",
+    "maxTags": 5
+  },
+  "cos": {
+    "enabled": false,
+    "bucket": "your-bucket",
+    "region": "ap-guangzhou",
+    "folder": "pipeline"
+  },
+  "targets": [
+    {
+      "name": "4K Wallpapers Demon Slayer",
+      "slug": "4kw",
+      "url": "https://4kwallpapers.com/demon-slayer-wallpapers/",
+      "baseUrl": "https://4kwallpapers.com/",
+      "itemSelector": ".box",
+      "image": {
+        "selector": "img",
+        "attr": "data-src"
+      },
+      "title": {
+        "selector": "h3 a"
+      },
+      "description": {
+        "selector": "p"
+      },
+      "tags": {
+        "selector": "h3 a",
+        "split": "-"
+      },
+      "pagination": {
+        "type": "pageParam",
+        "start": 1,
+        "end": 1,
+        "param": "page"
+      }
+    }
+  ]
+}
